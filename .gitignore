@@ -1,0 +1,13 @@
+_ReSharper.*
+*.user
+*.suo
+*.cache
+bin
+Bin
+obj
+Obj
+ClientBin
+*.docstates
+Deploy
+logs
+Elmah.Errors
