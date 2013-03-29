@@ -33,8 +33,14 @@
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.16.1\lib\net40\Nancy.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.ViewEngines.Razor">
+      <HintPath>..\packages\Nancy.Viewengines.Razor.0.16.3\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Razor.Unofficial">
+      <HintPath>..\packages\System.Web.Razor.Unofficial.2.0.2\lib\net40\System.Web.Razor.Unofficial.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,9 +59,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Views\Residence\VerificationResult.cshtml" />
     <None Include="packages.config" />
+    <None Include="web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if not exist $(SolutionDir)..\Nuget md $(SolutionDir)..\Nuget
+if not exist $(SolutionDir)..\Nuget\$(TargetName) md $(SolutionDir)..\Nuget\$(TargetName)
+if not exist $(SolutionDir)..\Nuget\$(TargetName) md $(SolutionDir)..\Nuget\$(TargetName)\lib
+if not exist $(SolutionDir)..\Nuget\$(TargetName) md $(SolutionDir)..\Nuget\$(TargetName)\content
+rd /s /q  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+rd /s /q  $(SolutionDir)..\Nuget\$(TargetName)\content
+md  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+xcopy /s $(ProjectDir)Views $(SolutionDir)..\Nuget\$(TargetName)\content\Views\
+
+if $(ConfigurationName) == Debug (
+xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.16.3\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin\"
+xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.16.3\lib\Net40\Nancy.ViewEngines.Razor.dll" "$(ProjectDir)bin\"
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
