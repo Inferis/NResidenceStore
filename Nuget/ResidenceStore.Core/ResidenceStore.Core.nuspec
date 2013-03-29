@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ResidenceStore.Core</id>
+        <version>0.1</version>
+        <authors>Tom Adriaenssen</authors>
+        <owners>Tom Adriaenssen</owners>
+        <licenseUrl>https://raw.github.com/Inferis/NResidenceStore/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/Inferis/NResidenceStore/</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>This is the core complement of NResidenceStore. It features a base implementation you can use, and a default inmemory implementation.</description>
+        <summary>This is an implementation of a residence based authentication system. Residence based authentication is an alternative to password based authentication.</summary>
+        <releaseNotes>Initial release.</releaseNotes>
+        <copyright>Copyright 2013, Tom Adriaenssen</copyright>
+        <language>en-US</language>
+        <tags>authentication residence useridentity</tags>
+    </metadata>
+    <files>
+        <file src="lib\net40\ResidenceStore.Core.dll" target="lib\net40\ResidenceStore.Core.dll" />
+        <file src="lib\net40\ResidenceStore.Core.pdb" target="lib\net40\ResidenceStore.Core.pdb" />
+        <file src="icon.png" target="icon.png" />
+    </files>
+</package>
