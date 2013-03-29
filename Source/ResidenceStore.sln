@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore", "Residence
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore.RavenDB", "ResidenceStore.RavenDB\ResidenceStore.RavenDB.csproj", "{91A2DAE3-367E-43F8-A4ED-2AB2E6CB7006}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore.Tests", "ResidenceStore.Tests\ResidenceStore.Tests.csproj", "{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{91A2DAE3-367E-43F8-A4ED-2AB2E6CB7006}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A2DAE3-367E-43F8-A4ED-2AB2E6CB7006}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A2DAE3-367E-43F8-A4ED-2AB2E6CB7006}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
