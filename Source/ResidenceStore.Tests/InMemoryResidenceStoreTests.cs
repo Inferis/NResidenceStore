@@ -1,4 +1,4 @@
-﻿namespace DocumentSession
+﻿namespace ResidenceStore.Tests
 {
     using System;
     using System.Linq;
