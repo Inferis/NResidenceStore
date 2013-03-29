@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore.RavenDB", "R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore.Tests", "ResidenceStore.Tests\ResidenceStore.Tests.csproj", "{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResidenceStore.Web.Nancy", "ResidenceStore.Web.Nancy\ResidenceStore.Web.Nancy.csproj", "{FEFD5F04-6418-4062-8BB0-5977C7387736}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59D009EA-9AD7-42D7-B3FA-E42B6346B9D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEFD5F04-6418-4062-8BB0-5977C7387736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEFD5F04-6418-4062-8BB0-5977C7387736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEFD5F04-6418-4062-8BB0-5977C7387736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEFD5F04-6418-4062-8BB0-5977C7387736}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
