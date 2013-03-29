@@ -64,6 +64,7 @@
                     current.VerificationToken = residenceInfo.VerificationToken;
                     current.Verified = residenceInfo.Verified;
                     current.AuthorizationToken = residenceInfo.AuthorizationToken;
+                    current.UserInfo = residenceInfo.UserInfo;
                     session.Store(current);
                 }
                 else

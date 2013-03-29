@@ -28,11 +28,12 @@
             Post["/"] = parameters => {
                 string email = Request.Form.email;
                 string residence = Request.Form.residence;
+                string userInfo = Request.Form.userinfo;
 
                 if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(residence))
                     return HttpStatusCode.BadRequest;
 
-                var token = residenceStore.GenerateVerificationToken(email, residence);
+                var token = residenceStore.GenerateVerificationToken(email, residence, userInfo);
                 return Response.AsJson(new {
                     email = email,
                     verificationToken = token

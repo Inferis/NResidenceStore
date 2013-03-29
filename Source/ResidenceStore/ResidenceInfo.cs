@@ -6,10 +6,11 @@
         {
         }
 
-        public ResidenceInfo(string email, string residence)
+        public ResidenceInfo(string email, string residence, string userInfo)
         {
             Email = email;
             Residence = residence;
+            UserInfo = userInfo;
         }
 
         public ResidenceInfo(ResidenceInfo residenceInfo)
@@ -25,6 +26,7 @@
         public string Residence { get; set; }
         public string VerificationToken { get; set; }
         public string AuthorizationToken { get; set; }
+        public string UserInfo { get; set; }
         public bool Verified { get; set; }
     }
 }

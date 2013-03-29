@@ -21,7 +21,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
 
             var info = store.ResidencesForEmail(email).Single();
             Assert.Equal(email, info.Email);
@@ -38,7 +38,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            store.GenerateVerificationToken(email, residence);
+            store.GenerateVerificationToken(email, residence, null);
 
             Assert.Equal(1, store.ResidencesForEmail(email).Count);
         }
@@ -50,8 +50,8 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var first = store.GenerateVerificationToken(email, residence);
-            var second = store.GenerateVerificationToken(email, residence);
+            var first = store.GenerateVerificationToken(email, residence, null);
+            var second = store.GenerateVerificationToken(email, residence, null);
 
             Assert.NotEqual(first, second);
         }
@@ -63,8 +63,8 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            store.GenerateVerificationToken(email, residence);
-            store.GenerateVerificationToken(email, residence);
+            store.GenerateVerificationToken(email, residence, null);
+            store.GenerateVerificationToken(email, residence, null);
 
             var info = store.ResidencesForEmail(email).Single();
             Assert.Equal(email, info.Email);
@@ -77,7 +77,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
 
             var info = store.ConfirmVerificationToken(token);
             Assert.Equal(email, info.Email);
@@ -94,7 +94,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
 
             var info = store.ConfirmVerificationToken(token + token);
             Assert.Null(info);
@@ -107,7 +107,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
 
             var info = store.ConfirmVerificationToken(token);
             var info2 = store.ConfirmVerificationToken(token);
@@ -121,7 +121,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
 
             var info = store.GenerateNewAuthorizationToken(token);
@@ -136,7 +136,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
 
             var info = store.GenerateNewAuthorizationToken(token);
             Assert.Null(info);
@@ -149,7 +149,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
 
             var info = store.GenerateNewAuthorizationToken(token);
@@ -163,7 +163,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
 
             store.GenerateNewAuthorizationToken(token);
@@ -178,7 +178,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
 
             var info = store.GenerateNewAuthorizationToken(token);
@@ -196,7 +196,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
             store.GenerateNewAuthorizationToken(token);
 
@@ -213,7 +213,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
             token = store.GenerateNewAuthorizationToken(token).AuthorizationToken;
 
@@ -229,7 +229,7 @@
             var residence = Guid.NewGuid().ToString("N");
 
             var store = new InMemoryResidenceStore();
-            var token = store.GenerateVerificationToken(email, residence);
+            var token = store.GenerateVerificationToken(email, residence, null);
             store.ConfirmVerificationToken(token);
             token = store.GenerateNewAuthorizationToken(token).AuthorizationToken;
 

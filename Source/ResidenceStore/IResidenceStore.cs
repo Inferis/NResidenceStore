@@ -7,7 +7,7 @@
     {
         IResidenceStoreMailer Mailer { get; }
 
-        string GenerateVerificationToken(string email, string residence);
+        string GenerateVerificationToken(string email, string residence, string userInfo);
         ResidenceInfo ConfirmVerificationToken(string verificationToken);
         ResidenceInfo GenerateNewAuthorizationToken(string verificationToken);
         ResidenceInfo ResidenceWithAuthorizationToken(string token);

@@ -17,7 +17,7 @@
 
         public IResidenceStoreMailer Mailer { get; private set; }
 
-        public string GenerateVerificationToken(string email, string residence)
+        public string GenerateVerificationToken(string email, string residence, string userInfo)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(residence))
                 return null;
@@ -25,7 +25,7 @@
             // find existing
             email = email.Trim();
             residence = residence.Trim();
-            var residenceInfo = GetResidence(email, residence) ?? new ResidenceInfo(email, residence);
+            var residenceInfo = GetResidence(email, residence) ?? new ResidenceInfo(email, residence, userInfo);
 
             // generate verificiationtoken
             var token = GenerateToken(email + residence);
