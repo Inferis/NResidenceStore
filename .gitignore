@@ -11,3 +11,4 @@ ClientBin
 Deploy
 logs
 Elmah.Errors
+*.nupkg
