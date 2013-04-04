@@ -4,11 +4,11 @@
     using System.Web.Mvc;
     using Models;
 
-    public abstract class ResidenceController : Controller
+    public abstract class ResidenceVerifierController : Controller
     {
         private readonly IResidenceStore residenceStore;
 
-        protected ResidenceController(IResidenceStore residenceStore)
+        protected ResidenceVerifierController(IResidenceStore residenceStore)
         {
             this.residenceStore = residenceStore;
         }
