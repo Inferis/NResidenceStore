@@ -5,20 +5,20 @@
     using Mailer;
     using System.Web;
 
-    public class ApplicationResidenceStore : ResidenceStoreBase
+    public class WebApplicationResidenceStore : ResidenceStoreBase
     {
         private readonly string applicationKey;
 
-        public ApplicationResidenceStore(IResidenceStoreMailer mailer)
+        public WebApplicationResidenceStore(IResidenceStoreMailer mailer)
             : this(null, mailer)
         {
 
         }
 
-        public ApplicationResidenceStore(string applicationKey, IResidenceStoreMailer mailer)
+        public WebApplicationResidenceStore(string applicationKey, IResidenceStoreMailer mailer)
             : base(mailer)
         {
-            this.applicationKey = string.IsNullOrEmpty(applicationKey) ? "ApplicationResidenceStore" : applicationKey;
+            this.applicationKey = string.IsNullOrEmpty(applicationKey) ? "WebApplicationResidenceStore" : applicationKey;
         }
 
         private void BackingStore(Action<ResidenceStoreBase> storeAccessor)
