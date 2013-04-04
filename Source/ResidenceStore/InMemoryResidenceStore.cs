@@ -20,12 +20,12 @@
 
         }
 
-        protected override ResidenceInfo GetResidence(string email, string residence)
+        protected internal override ResidenceInfo GetResidence(string email, string residence)
         {
             return residences.FirstOrDefault(r => string.Compare(r.Email, email, StringComparison.InvariantCultureIgnoreCase) == 0 && residence == r.Residence);
         }
 
-        protected override void PutResidence(ResidenceInfo residenceInfo)
+        protected internal override void PutResidence(ResidenceInfo residenceInfo)
         {
             var old = GetResidence(residenceInfo.Email, residenceInfo.Residence);
             if (old != null)
@@ -33,7 +33,7 @@
             residences.Add(new ResidenceInfo(residenceInfo));
         }
 
-        protected override void RemoveResidence(ResidenceInfo residenceInfo)
+        protected internal override void RemoveResidence(ResidenceInfo residenceInfo)
         {
             residences.Remove(residenceInfo);
         }
@@ -50,12 +50,12 @@
             get { return residences.Count; }
         }
 
-        protected override ResidenceInfo GetVerifiedResidenceWithAnyToken(string token)
+        protected internal override ResidenceInfo GetVerifiedResidenceWithAnyToken(string token)
         {
             return residences.FirstOrDefault(r => r.Verified && (token == r.VerificationToken || token == r.AuthorizationToken));
         }
 
-        protected override ResidenceInfo GetUnverifiedResidenceWithVerificationToken(string verificationToken)
+        protected internal override ResidenceInfo GetUnverifiedResidenceWithVerificationToken(string verificationToken)
         {
             return residences.FirstOrDefault(r => !r.Verified && verificationToken == r.VerificationToken);
         }

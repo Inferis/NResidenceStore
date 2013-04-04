@@ -101,11 +101,11 @@
         public abstract List<ResidenceInfo> ResidencesForEmail(string email);
         public abstract int Count { get; }
 
-        protected abstract ResidenceInfo GetResidence(string email, string residence);
-        protected abstract void PutResidence(ResidenceInfo residenceInfo);
-        protected abstract void RemoveResidence(ResidenceInfo residenceInfo);
-        protected abstract ResidenceInfo GetUnverifiedResidenceWithVerificationToken(string verificationToken);
-        protected abstract ResidenceInfo GetVerifiedResidenceWithAnyToken(string token);
+        protected internal abstract ResidenceInfo GetResidence(string email, string residence);
+        protected internal abstract void PutResidence(ResidenceInfo residenceInfo);
+        protected internal abstract void RemoveResidence(ResidenceInfo residenceInfo);
+        protected internal abstract ResidenceInfo GetUnverifiedResidenceWithVerificationToken(string verificationToken);
+        protected internal abstract ResidenceInfo GetVerifiedResidenceWithAnyToken(string token);
 
         protected virtual string GenerateToken(string value)
         {
