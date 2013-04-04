@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="WebApplicationResidenceStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ResidenceStore\ResidenceStore.csproj">

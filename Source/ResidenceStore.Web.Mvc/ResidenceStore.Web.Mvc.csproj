@@ -74,6 +74,9 @@
     <None Include="Nuget\Controllers\ResidenceController.cs.pp" />
     <Compile Include="ResidenceVerifierController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ResidenceStore\ResidenceStore.csproj">
