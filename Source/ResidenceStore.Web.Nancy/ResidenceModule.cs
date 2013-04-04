@@ -5,21 +5,15 @@
     using ResidenceStore;
     using global::Nancy;
 
-    public class ResidenceModule : NancyModule
+    public abstract class ResidenceModule : NancyModule
     {
-        public ResidenceModule(IResidenceStore residenceStore)
-            : this("/residence", residenceStore)
-        {
-            
-        }
-        
-        public ResidenceModule(string modulePath, IResidenceStore residenceStore)
+        protected ResidenceModule(string modulePath, IResidenceStore residenceStore)
             : base(modulePath)
         {
             Options["/"] = parameters => {
                 var response = new Response() {
                     StatusCode = HttpStatusCode.OK,
-                    Headers = { { "Allow", "POST,GET,DELETE,OPTIONS" } } 
+                    Headers = { { "Allow", "POST,GET,DELETE,OPTIONS" } }
                 };
                 return response;
             };
@@ -47,6 +41,9 @@
                     return HttpStatusCode.BadRequest;
 
                 var residence = residenceStore.ConfirmVerificationToken(verificationToken);
+                if (residence != null) {
+                    OnResidenceConfirmed(residence);
+                }
                 return GetVerificationResultView(residence);
             };
 
@@ -62,6 +59,8 @@
                 if (info == null) {
                     return HttpStatusCode.Unauthorized;
                 }
+
+                OnResidenceReauthorized(info);
 
                 return Response.AsJson(new {
                     email = info.Email,
@@ -81,6 +80,9 @@
                 }
 
                 residenceStore.RevokeAuthorizationToken(token);
+
+                OnResidenceDeleted(info);
+
                 return HttpStatusCode.OK;
             };
         }
@@ -89,5 +91,9 @@
         {
             return View["Residence/VerificationResult", new VerificationResultModel(residence)];
         }
+
+        protected abstract void OnResidenceConfirmed(ResidenceInfo residence);
+        protected virtual void OnResidenceReauthorized(ResidenceInfo residence) { }
+        protected abstract void OnResidenceDeleted(ResidenceInfo residence);
     }
 }
