@@ -15,7 +15,7 @@
             : base(mailer)
         {
             this.store = store;
-            store.Conventions.RegisterIdConvention<ResidenceInfo>((dbname, commands, residence) => "residence/" + HttpUtility.UrlEncode(residence.Email) + "-" + HttpUtility.UrlEncode(residence.Residence));
+            store.Conventions.RegisterIdConvention<ResidenceInfo>((dbname, commands, residence) => "residence/" + string.Join("", residence.Email.Select(x => ((int)x).ToString("x2"))) + HttpUtility.UrlEncode(residence.Residence));
         }
 
         public override List<ResidenceInfo> ResidencesForEmail(string email)
