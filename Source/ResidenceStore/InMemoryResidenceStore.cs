@@ -38,11 +38,25 @@
             residences.Remove(residenceInfo);
         }
 
+        public override bool HasResidenceForEmail(string email)
+        {
+            return residences
+                .Any(r => string.Compare(r.Email, email, StringComparison.InvariantCultureIgnoreCase) == 0);
+        }
+
         public override List<ResidenceInfo> ResidencesForEmail(string email)
         {
             return residences
                 .Where(r => string.Compare(r.Email, email, StringComparison.InvariantCultureIgnoreCase) == 0)
                 .ToList();
+        }
+
+        public override void RemoveAllResidencesForEmail(string email)
+        {
+            var all = ResidencesForEmail(email);
+            foreach (var residenceInfo in all) {
+                RemoveResidence(residenceInfo);
+            }
         }
 
         public override int Count

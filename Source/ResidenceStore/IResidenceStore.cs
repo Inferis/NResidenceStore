@@ -13,6 +13,13 @@
         ResidenceInfo GenerateNewAuthorizationToken(string verificationToken);
         ResidenceInfo ResidenceWithAuthorizationToken(string token);
         void RevokeAuthorizationToken(string token);
+    }
+
+    public interface IResidenceStoreManager
+    {
+        bool HasResidenceForEmail(string email);
         List<ResidenceInfo> ResidencesForEmail(string email);
+        void RemoveAllResidencesForEmail(string email);
+        int Count { get; }
     }
 }

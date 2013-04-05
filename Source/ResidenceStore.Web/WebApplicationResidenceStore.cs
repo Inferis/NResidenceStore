@@ -40,9 +40,19 @@
             }
         }
 
+        public override bool HasResidenceForEmail(string email)
+        {
+            return BackingStore(store => store.HasResidenceForEmail(email));
+        }
+
         public override List<ResidenceInfo> ResidencesForEmail(string email)
         {
             return BackingStore(store => store.ResidencesForEmail(email));
+        }
+
+        public override void RemoveAllResidencesForEmail(string email)
+        {
+            BackingStore(store => store.RemoveAllResidencesForEmail(email));
         }
 
         public override int Count

@@ -5,7 +5,7 @@
     using System.Security.Cryptography;
     using Mailer;
 
-    public abstract class ResidenceStoreBase : IResidenceStore
+    public abstract class ResidenceStoreBase : IResidenceStore, IResidenceStoreManager
     {
         protected ResidenceStoreBase(IResidenceStoreMailer mailer)
         {
@@ -98,7 +98,9 @@
                 RemoveResidence(residenceInfo);
         }
 
+        public abstract bool HasResidenceForEmail(string email);
         public abstract List<ResidenceInfo> ResidencesForEmail(string email);
+        public abstract void RemoveAllResidencesForEmail(string email);
         public abstract int Count { get; }
 
         protected internal abstract ResidenceInfo GetResidence(string email, string residence);

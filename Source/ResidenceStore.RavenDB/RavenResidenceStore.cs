@@ -18,10 +18,33 @@
             store.Conventions.RegisterIdConvention<ResidenceInfo>((dbname, commands, residence) => "residence/" + string.Join("", residence.Email.Select(x => ((int)x).ToString("x2"))) + HttpUtility.UrlEncode(residence.Residence));
         }
 
+        public override bool HasResidenceForEmail(string email)
+        {
+            using (var session = store.OpenSession()) {
+                return session.Query<ResidenceInfo>().Any(r => r.Email == email);
+            }
+        }
+
         public override List<ResidenceInfo> ResidencesForEmail(string email)
         {
             using (var session = store.OpenSession()) {
-                return session.Query<ResidenceInfo>().Where(r => r.Email == email).ToList();
+                return ResidencesForEmail(email, session);
+            }
+        }
+
+        private List<ResidenceInfo> ResidencesForEmail(string email, IDocumentSession session)
+        {
+            return session.Query<ResidenceInfo>().Where(r => r.Email == email).ToList();
+        }
+
+        public override void RemoveAllResidencesForEmail(string email)
+        {
+            using (var session = store.OpenSession()) {
+                var all = ResidencesForEmail(email, session);
+                foreach (var residenceInfo in all) {
+                    session.Delete(residenceInfo);
+                }
+                session.SaveChanges();
             }
         }
 
