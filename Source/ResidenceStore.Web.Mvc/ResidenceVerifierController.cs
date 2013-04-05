@@ -13,6 +13,8 @@
             this.residenceStore = residenceStore;
         }
 
+        protected IResidenceStore ResidenceStore { get { return residenceStore; } }
+
         [HttpOptions, ActionName("Index")]
         public ActionResult Options()
         {
