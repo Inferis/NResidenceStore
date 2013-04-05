@@ -28,48 +28,45 @@
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
 
             var token = residenceStore.GenerateVerificationToken(email, residence, userinfo, GenerateVerificationLink);
+            OnResidenceRegistered(new ResidenceInfo(email, residence, userinfo) { VerificationToken = token });
             return Json(new {
                 email = email,
                 verificationToken = token
             });
         }
 
-        // link back from the email
         [HttpGet, ActionName("Index")]
         public ActionResult Verify(string token)
         {
-            if (string.IsNullOrEmpty(token))
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(token)) {
+                // user asks if the residence has been verified
+                // this wil generate a new authorization token
+                token = Request.Headers["Authorization"];
+                var residence = Request.Headers["X-Residence"];
+                if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(residence))
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var residence = residenceStore.ConfirmVerificationToken(token);
-            if (residence != null) {
-                OnResidenceConfirmed(residence);
+                var info = residenceStore.GenerateNewAuthorizationToken(token);
+                if (info == null) {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                }
+
+                OnResidenceReauthorized(info);
+
+                return Json(new {
+                    email = info.Email,
+                    authorizationToken = info.AuthorizationToken
+                }, JsonRequestBehavior.AllowGet);
             }
+            else {
+                // link back from the email
+                var residence = residenceStore.ConfirmVerificationToken(token);
+                if (residence != null) {
+                    OnResidenceConfirmed(residence);
+                }
 
-            return GetVerificationResultView(residence);
-        }
-
-        // user asks if the residence has been verified
-        // this wil generate a new authorization token
-        [HttpGet, ActionName("Index")]
-        public ActionResult CheckVerification()
-        {
-            var token = Request.Headers["Authorization"];
-            var residence = Request.Headers["X-Residence"];
-            if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(residence))
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var info = residenceStore.GenerateNewAuthorizationToken(token);
-            if (info == null) {
-                return new HttpStatusCodeResult(HttpStatusCode.Unauthorized);
+                return GetVerificationResultView(residence);
             }
-
-            OnResidenceReauthorized(info);
-
-            return Json(new {
-                email = info.Email,
-                authorizationToken = info.AuthorizationToken
-            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpDelete, ActionName("Index")]
@@ -99,6 +96,8 @@
         {
             return Url.Action("Index", new { token });
         }
+
+        protected virtual void OnResidenceRegistered(ResidenceInfo residence) { }
         protected abstract void OnResidenceConfirmed(ResidenceInfo residence);
         protected virtual void OnResidenceReauthorized(ResidenceInfo residence) { }
         protected abstract void OnResidenceDeleted(ResidenceInfo residence);
