@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{9D95F3A5-CAD3-40C5-8B5D-D408208FBFDA}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
+  <Target Name="Build">
+    <PropertyGroup>
+      <BuildType>None</BuildType>
+      <RevisionType>Increment</RevisionType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+      <BuildType>Increment</BuildType>
+      <RevisionType>Increment</RevisionType>
+    </PropertyGroup>
+    <Version VersionFile="$(SolutionDir)\Version\VERSION_STORE" Major="0" Minor="1" BuildType="$(BuildType)" RevisionType="$(RevisionType)">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+    <Message Text="Version: $(Version)" />
+    <Attrib Files="$(SolutionDir)\Version\StoreVersionAssemblyInfo.cs" ReadOnly="False" />
+    <AssemblyInfo CodeLanguage="CS" OutputFile="$(SolutionDir)\Version\StoreVersionAssemblyInfo.cs" AssemblyVersion="$(Major).$(Minor).$(Build)" AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)" />
+  </Target>
+  <ItemGroup>
+    <None Include="VERSION_STORE" />
+  </ItemGroup>
+</Project>

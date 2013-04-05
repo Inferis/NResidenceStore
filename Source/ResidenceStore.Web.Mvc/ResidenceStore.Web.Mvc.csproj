@@ -78,6 +78,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Version\StoreVersionAssemblyInfo.cs">
+      <Link>Properties\StoreVersionAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ResidenceStore\ResidenceStore.csproj">

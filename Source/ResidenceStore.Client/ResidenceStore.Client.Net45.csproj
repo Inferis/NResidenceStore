@@ -43,6 +43,9 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Version\ClientVersionAssemblyInfo.cs">
+      <Link>Properties\ClientVersionAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="ResidenceClient.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

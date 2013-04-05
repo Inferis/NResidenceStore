@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2a5e7a42-3fe5-458b-a249-471caf82342f}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildCommunityTasksPath>$(SolutionDir)\.build</MSBuildCommunityTasksPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets" />
+  <Target Name="Build">
+    <PropertyGroup>
+      <BuildType>None</BuildType>
+      <RevisionType>Increment</RevisionType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+      <BuildType>Increment</BuildType>
+      <RevisionType>Increment</RevisionType>
+    </PropertyGroup>
+    <Version VersionFile="$(SolutionDir)\Version\VERSION_CLIENT" Major="0" Minor="1" BuildType="$(BuildType)" RevisionType="$(RevisionType)">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+    <Message Text="Version: $(Version)" />
+    <Attrib Files="$(SolutionDir)\Version\ClientVersionAssemblyInfo.cs" ReadOnly="False" />
+    <AssemblyInfo CodeLanguage="CS" OutputFile="$(SolutionDir)\Version\ClientVersionAssemblyInfo.cs" AssemblyVersion="$(Major).$(Minor).$(Build)" AssemblyFileVersion="$(Major).$(Minor).$(Build).$(Revision)" AssemblyInformationalVersion="$(Major).$(Minor).$(Build).$(Revision)" />
+  </Target>
+  <ItemGroup>
+    <None Include="VERSION_CLIENT" />
+  </ItemGroup>
+</Project>
