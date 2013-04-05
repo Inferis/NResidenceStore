@@ -82,6 +82,7 @@ md  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy /s $(ProjectDir)Views $(SolutionDir)..\Nuget\$(TargetName)\content\Views\
+copy $(SolutionDir)Version\VERSION_STORE $(SolutionDir)..\Nuget\$(TargetName)\VERSION /y
 
 if $(ConfigurationName) == Debug (
 xcopy /s /y /R "$(SolutionDir)packages\Nancy.Viewengines.Razor.0.16.3\BuildProviders\Nancy.ViewEngines.Razor.BuildProviders.dll" "$(ProjectDir)bin\"

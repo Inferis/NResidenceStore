@@ -1,7 +1,8 @@
-rem @ECHO OFF
+@ECHO OFF
 SETLOCAL
-SET VERSION=%1
  
 FOR /f "" %%G IN ('dir /b/a:d') DO (
-  nuget pack %%G\%%G.nuspec -Version %VERSION% -Symbols -o Packages
+  for /f "" %%V in (%%G\VERSION) do (
+	  nuget pack %%G\%%G.nuspec -Version %%V -Symbols -o Packages
+  )
 )

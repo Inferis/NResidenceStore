@@ -107,6 +107,7 @@ xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net
 xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy /s $(ProjectDir)Views $(SolutionDir)..\Nuget\$(TargetName)\content\Views\
 xcopy /s $(ProjectDir)Nuget $(SolutionDir)..\Nuget\$(TargetName)\content\
+copy $(SolutionDir)Version\VERSION_STORE $(SolutionDir)..\Nuget\$(TargetName)\VERSION /y
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

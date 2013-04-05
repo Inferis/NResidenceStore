@@ -66,8 +66,11 @@ if not exist $(SolutionDir)..\Nuget\$(TargetName) md $(SolutionDir)..\Nuget\$(Ta
 if not exist $(SolutionDir)..\Nuget\$(TargetName) md $(SolutionDir)..\Nuget\$(TargetName)\lib
 rd /s /q  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 md  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
-copy $(TargetDir)\$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
-copy $(TargetDir)\$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40</PostBuildEvent>
+xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+
+copy $(SolutionDir)Version\VERSION_STORE $(SolutionDir)..\Nuget\$(TargetName)\VERSION /y
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

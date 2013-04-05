@@ -68,6 +68,7 @@ rd /s /q  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 md  $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy $(TargetDir)$(TargetName).dll $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
 xcopy $(TargetDir)$(TargetName).pdb $(SolutionDir)..\Nuget\$(TargetName)\lib\net40
+copy $(SolutionDir)Version\VERSION_STORE $(SolutionDir)..\Nuget\$(TargetName)\VERSION /y
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
