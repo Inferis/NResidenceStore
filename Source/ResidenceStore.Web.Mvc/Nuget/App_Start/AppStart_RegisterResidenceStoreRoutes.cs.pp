@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Web.Infrastructure;
  
-[assembly: WebActivator.PostApplicationStartMethod(typeof($rootnamespace$.AppStart_RegisterRoutesAreasFilters), "Start")]
+[assembly: WebActivator.PostApplicationStartMethod(typeof($rootnamespace$.AppStart_RegisterResidenceStoreRoutes), "Start")]
  
 namespace $rootnamespace$ {
     public static class AppStart_RegisterResidenceStoreRoutes {
