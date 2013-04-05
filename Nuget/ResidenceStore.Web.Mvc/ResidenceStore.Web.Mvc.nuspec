@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ResidenceStore.Web.Mvc</id>
+        <version>0.1</version>
+        <authors>Tom Adriaenssen</authors>
+        <owners>Tom Adriaenssen</owners>
+        <licenseUrl>https://raw.github.com/Inferis/NResidenceStore/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/Inferis/NResidenceStore/</projectUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>An endpoint implementation for the residence store protocol, as a standard ASP.NET MVC Controller.</description>
+        <summary>This is an implementation of a residence based authentication system. Residence based authentication is an alternative to password based authentication.</summary>
+        <releaseNotes>Initial release.</releaseNotes>
+        <copyright>Copyright 2013, Tom Adriaenssen</copyright>
+        <language>en-US</language>
+        <tags>authentication residence useridentity web aspnet mvc</tags>
+        <dependencies>
+            <dependency id="ResidenceStore.Core" />
+            <dependency id="ResidenceStore.Web" />
+            <dependency id="Microsoft.AspNet.Mvc" version="4.0.20710.0" />
+            <dependency id="Microsoft.AspNet.Razor" version="2.0.20715.0"  />
+            <dependency id="Microsoft.AspNet.WebPages" version="2.0.20710.0" />
+            <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+            <dependency id="WebActivator" version="1.5" />
+        </dependencies>
+        <references>
+          <reference file="ResidenceStore.Web.Mvc.dll" />
+        </references>
+    </metadata>
+    <files>
+        <file src="lib\net40\ResidenceStore.Web.Mvc.dll" target="lib\net40\ResidenceStore.Web.Mvc.dll" />
+        <file src="lib\net40\ResidenceStore.Web.Mvc.pdb" target="lib\net40\ResidenceStore.Web.Mvc.pdb" />
+        <file src="content\Views\**\*" target="content\Views" />
+        <file src="content\App_Start\**\*" target="content\App_Start" />
+        <file src="content\Controllers\**\*" target="content\Controllers" />
+        <file src="content\ResidenceStoreMailer.cs.pp" target="content" />
+        <file src="icon.png" target="icon.png" />
+    </files>
+</package>
