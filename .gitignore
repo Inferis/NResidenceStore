@@ -12,3 +12,4 @@ Deploy
 logs
 Elmah.Errors
 *.nupkg
+Nuget\lib\*
