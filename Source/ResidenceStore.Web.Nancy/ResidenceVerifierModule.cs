@@ -7,9 +7,13 @@
 
     public abstract class ResidenceVerifierModule : NancyModule
     {
+        private readonly IResidenceStore residenceStore;
+
         protected ResidenceVerifierModule(string modulePath, IResidenceStore residenceStore)
             : base(modulePath)
         {
+            this.residenceStore = residenceStore;
+
             Options["/"] = parameters => {
                 var response = new Response() {
                     StatusCode = HttpStatusCode.OK,
@@ -87,6 +91,8 @@
             };
         }
 
+        protected IResidenceStore ResidenceStore { get { return residenceStore; } }
+ 
         protected virtual string GenerateVerificationLink(string token)
         {
             return string.Concat(ModulePath, "/", token);
