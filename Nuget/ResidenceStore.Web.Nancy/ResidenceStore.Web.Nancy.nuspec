@@ -13,7 +13,7 @@
         <releaseNotes>Initial release.</releaseNotes>
         <copyright>Copyright 2013, Tom Adriaenssen</copyright>
         <language>en-US</language>
-        <tags>authentication residence useridentity raven ravendb</tags>
+        <tags>authentication residence useridentity web nancy nancyfx</tags>
         <dependencies>
             <dependency id="ResidenceStore.Core" />
             <dependency id="Nancy" version="0.16.1" />
