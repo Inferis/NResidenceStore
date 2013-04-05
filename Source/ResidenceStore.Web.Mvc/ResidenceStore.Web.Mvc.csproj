@@ -72,6 +72,7 @@
     <Compile Include="Models\VerificationResultModel.cs" />
     <None Include="Nuget\App_Start\AppStart_RegisterResidenceStoreRoutes.cs.pp" />
     <None Include="Nuget\Controllers\ResidenceController.cs.pp" />
+    <None Include="Nuget\ResidenceStoreMailer.cs.pp" />
     <Compile Include="ResidenceVerifierController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs">

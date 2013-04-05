@@ -27,7 +27,7 @@
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(residence))
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
 
-            var token = residenceStore.GenerateVerificationToken(email, residence, userinfo);
+            var token = residenceStore.GenerateVerificationToken(email, residence, userinfo, GenerateVerificationLink);
             return Json(new {
                 email = email,
                 verificationToken = token
@@ -95,6 +95,10 @@
             return View("VerificationResult", new VerificationResultModel(residence));
         }
 
+        protected virtual string GenerateVerificationLink(string token)
+        {
+            return Url.Action("Index", new { token });
+        }
         protected abstract void OnResidenceConfirmed(ResidenceInfo residence);
         protected virtual void OnResidenceReauthorized(ResidenceInfo residence) { }
         protected abstract void OnResidenceDeleted(ResidenceInfo residence);

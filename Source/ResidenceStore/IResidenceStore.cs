@@ -1,5 +1,6 @@
 ﻿namespace ResidenceStore
 {
+    using System;
     using System.Collections.Generic;
     using Mailer;
 
@@ -7,7 +8,7 @@
     {
         IResidenceStoreMailer Mailer { get; }
 
-        string GenerateVerificationToken(string email, string residence, string userInfo);
+        string GenerateVerificationToken(string email, string residence, string userInfo, Func<string, string> linkGenerator);
         ResidenceInfo ConfirmVerificationToken(string verificationToken);
         ResidenceInfo GenerateNewAuthorizationToken(string verificationToken);
         ResidenceInfo ResidenceWithAuthorizationToken(string token);

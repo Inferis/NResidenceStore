@@ -15,9 +15,9 @@
             Mailer = mailer;
         }
 
-        public IResidenceStoreMailer Mailer { get; private set; }
+        public IResidenceStoreMailer Mailer { get; protected set; }
 
-        public string GenerateVerificationToken(string email, string residence, string userInfo)
+        public string GenerateVerificationToken(string email, string residence, string userInfo, Func<string, string> linkGenerator)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(residence))
                 return null;
@@ -35,7 +35,7 @@
             PutResidence(residenceInfo);
 
             if (Mailer != null)
-                Mailer.SendVerificationMail(email, token);
+                Mailer.SendVerificationMail(email, token, linkGenerator);
 
             return token;
         }

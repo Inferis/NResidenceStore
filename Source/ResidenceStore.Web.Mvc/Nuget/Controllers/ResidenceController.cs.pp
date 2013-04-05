@@ -1,5 +1,6 @@
 ﻿namespace $rootnamespace$.Controllers
 {
+    using ResidenceStore;
     using ResidenceStore.Web;
     using ResidenceStore.Web.Mvc;
 
@@ -10,7 +11,7 @@
         /// to fit your own needs.
         /// </summary>
         public ResidenceController()
-            : base(new WebApplicationResidenceStore())
+            : base(new WebApplicationResidenceStore(new ResidenceStoreMailer()))
         {
 
         }
