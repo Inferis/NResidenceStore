@@ -16,7 +16,7 @@
         protected IResidenceStore ResidenceStore { get { return residenceStore; } }
 
         [HttpOptions, ActionName("Index")]
-        public ActionResult Options()
+        protected internal ActionResult Options()
         {
             Response.Headers["Allow"] = "POST,GET,DELETE,OPTIONS";
             return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -24,7 +24,7 @@
 
         // starts the flow. Post email and residence to the residenceStore
         [HttpPost, ActionName("Index")]
-        public ActionResult Register(string email, string residence, string userinfo)
+        protected internal ActionResult Register(string email, string residence, string userinfo)
         {
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(residence))
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
@@ -38,7 +38,7 @@
         }
 
         [HttpGet, ActionName("Index")]
-        public ActionResult Verify(string token)
+        protected internal ActionResult Verify(string token)
         {
             if (string.IsNullOrEmpty(token)) {
                 // user asks if the residence has been verified
@@ -71,8 +71,8 @@
             }
         }
 
-        [HttpDelete, ActionName("Index")]
-        public ActionResult Delete(string token)
+        [HttpDelete]
+        protected internal ActionResult Delete(string token)
         {
             var residence = Request.Headers["X-Residence"];
             if (string.IsNullOrEmpty(token) && string.IsNullOrEmpty(residence))
@@ -96,7 +96,7 @@
 
         protected virtual string GenerateVerificationLink(string token)
         {
-            return Url.Action("Index", new { token });
+            return Url.Action("Index", null, new { token }, Request.Url.Scheme);
         }
 
         protected virtual void OnResidenceRegistered(ResidenceInfo residence) { }

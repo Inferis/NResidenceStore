@@ -23,7 +23,7 @@ namespace $rootnamespace$ {
         {
             routes.MapRoute(
                 "Residence", // Route name
-                "{controller}/{token}", // URL with parameters
+                "residence/{token}", // URL with parameters
                 new { controller = "Residence", action = "Index", token = UrlParameter.Optional } // Parameter defaults
             );
         }
