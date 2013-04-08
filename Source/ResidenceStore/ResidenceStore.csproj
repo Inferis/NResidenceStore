@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IResidenceStoreProvider.cs" />
     <Compile Include="Mailer\DelegatedResidenceStoreMailer.cs" />
     <Compile Include="IResidenceStore.cs" />
     <Compile Include="Mailer\IResidenceStoreMailer.cs" />
