@@ -82,6 +82,7 @@
     <Compile Include="InMemoryResidenceStoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResidenceVerifierControllerTests.cs" />
+    <Compile Include="MvcMockHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -3,9 +3,11 @@
     using System;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Mailer;
     using MvcContrib.TestHelper;
     using MvcContrib.TestHelper.Fakes;
     using Web.Mvc;
+    using Web.Mvc.Controllers;
     using Xunit;
     using Moq;
 
@@ -24,7 +26,7 @@
             public ResidenceController(IResidenceStore residenceStore)
                 : base(residenceStore)
             {
-                
+
             }
 
             protected override void OnResidenceRegistered(ResidenceInfo residence)
@@ -51,10 +53,10 @@
         public ResidenceVerifierControllerTests()
         {
             RouteTable.Routes.Clear();
-            RouteTable.Routes.MapRoute(
+            RouteTable.Routes.MapResidenceRoutes(
                 "Residence", // Route name
-                "residence/{token}", // URL with parameters
-                new { controller = "Residence", action = UrlParameter.Optional, token = UrlParameter.Optional } // Parameter defaults
+                "residence", // URL with parameters
+                new { controller = "Residence" } // Parameter defaults
             );
 
             token = Guid.NewGuid().ToString("N");
@@ -63,16 +65,13 @@
         [Fact]
         public void Route_GET_Root_MapsTo_Verify_WithNullToken()
         {
-            "~/residence/".WithMethod(HttpVerbs.Get).ShouldMapTo<ResidenceController>(x => x.Verify(null));
+            "~/residence/".WithMethod(HttpVerbs.Get).ShouldMapTo<ResidenceController>(x => x.Verify());
         }
 
         [Fact]
         public void Route_GET_RootWithToken_MapsTo_Verify_WithToken()
         {
-            var r= ("~/residence/" + token).WithMethod(HttpVerbs.Get);
-            var r2 = ("~/residence").WithMethod(HttpVerbs.Get);
-            var r3 = ("~/residence/" + token).WithMethod(HttpVerbs.Delete);
-            ("~/residence/" + token).WithMethod(HttpVerbs.Get).ShouldMapTo<ResidenceController>(x => x.Verify(token));
+            ("~/residence/" + token).WithMethod(HttpVerbs.Get).ShouldMapTo<ResidenceController>(x => x.Confirm(token));
         }
 
         [Fact]
@@ -85,6 +84,26 @@
         public void Route_DELETE_RootWithToken_MapsTo_Delete_WithToken()
         {
             ("~/residence/" + token).WithMethod(HttpVerbs.Delete).ShouldMapTo<ResidenceController>(x => x.Delete(token));
+        }
+
+
+        [Fact]
+        public void GenerateVerificationToken_Generates_CorrectLink()
+        {
+            string link = null;
+            var store = new Mock<IResidenceStore>();
+
+            store.Setup(x => x.GenerateVerificationToken(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<Func<string, string>>())).Returns<string, string, string, Func<string, string>>((e, t, ui, lg) => {
+                link = lg(t);
+                return token;
+            });
+
+            var controller = new ResidenceController(store.Object);
+            controller.SetFakeControllerContext();
+            controller.Request.SetupRequestUrl("http://foo.bar/residence");
+            controller.Register("foo@bar.baz", "1234", null);
+
+            Assert.Equal("http://foo.bar/residence/" + token, link);
         }
     }
 }
