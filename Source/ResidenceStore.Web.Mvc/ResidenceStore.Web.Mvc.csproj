@@ -69,6 +69,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizeWithResidence.cs" />
+    <Compile Include="AuthorizeWithResidenceAttribute.cs" />
     <Compile Include="Models\VerificationResultModel.cs" />
     <None Include="Nuget\App_Start\AppStart_RegisterResidenceStoreRoutes.cs.pp" />
     <None Include="Nuget\Controllers\ResidenceController.cs.pp" />
