@@ -74,6 +74,7 @@
     <None Include="Nuget\Controllers\ResidenceController.cs.pp" />
     <None Include="Nuget\ResidenceStoreMailer.cs.pp" />
     <Compile Include="ResidenceVerifierController.cs" />
+    <Compile Include="ResidenceRouterMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>

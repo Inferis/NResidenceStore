@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Web.Infrastructure;
+using ResidenceStore.Web.Mvc;
  
 [assembly: WebActivator.PostApplicationStartMethod(typeof($rootnamespace$.AppStart_RegisterResidenceStoreRoutes), "Start")]
  
@@ -21,10 +22,10 @@ namespace $rootnamespace$ {
  
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.MapRoute(
-                "Residence", // Route name
-                "residence/{token}", // URL with parameters
-                new { controller = "Residence", action = "Index", token = UrlParameter.Optional } // Parameter defaults
+            routes.MapResidenceRoutes(
+                "Residence", // base Route name
+                "residence", // base URL 
+                new { controller = "Residence" } // Parameter defaults.
             );
         }
     }
